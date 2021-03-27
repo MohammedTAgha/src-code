@@ -1,20 +1,4 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-
-
-import list from "./Assets/ListView.svg";
-
-import "./Styles.css";
-//import { Button } from "reactstrap";
-import hero from './Assets/heroImg.png'
-import Header from './Components/Header'
-import CardItem from './Components/CardItem'
-
-
-import {Cta,Button, Card, Text} from "./Elements/Eements";
-
-function App() {
-  var Codes={
+export  const Codes={
     dialog:{
         title:'android dialog',
         description:'Android AlertDialog can be used to display the dialog message with OK and Cancel buttons. It can be used to interrupt and ask the user about his/her choice to continue or discontinue.',
@@ -36,22 +20,3 @@ function App() {
         img:'notification',
     },
 }
-  return (
-    <div>
-      <Header></Header>
-      <div class='second'>
-         <article>“ Copy-and-Paste was programmed by programmers <br/> for programmers actually .”</article>
-         <div class='cards'>
-          
-          {
-           Object.keys(Codes).map((item, i) => (
-            <CardItem data={Codes[item]} key={i}></CardItem>
-           ))}
-
-         </div>
-      </div>
-    </div>
-  );
-}
-
-export default App;
