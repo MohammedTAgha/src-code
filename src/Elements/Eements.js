@@ -4,14 +4,18 @@ import styled from 'styled-components';
 export const Cta = styled.button`
 width: 91px;
 height: 48px;
+width:${props=> props.w};
+height: ${props=> props.h};
+position:${props=> props.position};
+
 margin:${props=> props.margin};
-margin-left: ,:${props=> props.ml};
+margin-left: :${props=> props.ml};
 margin-right:${props=> props.mr};
-margin-bottom: ,:${props=> props.mb};
+margin-bottom: :${props=> props.mb};
 margin-top:${props=> props.mt};
 
 right: 0px;
-top: calc(50% - 42px/2);
+
 color:${props=>(props.outLined ? '#3C64B1':'#fff')};
 font-family: Mulish;
 font-style: normal;
@@ -108,6 +112,12 @@ box-shadow: 0px 3px 25px rgba(119, 129, 147, 0.19);
 /// texts 
 export const Text = styled.div`
 
+// main styles
+width:${props=> props.w};
+height: 48px;
+height: ${props=> props.h};
+position:${props=> props.position};
+
 // margin 
 margin:${props=> props.ml};
 margin-left:${props=> props.ml};
@@ -123,21 +133,231 @@ padding-bottom:${props=> props.pb};
 padding-top:${props=> props.pt};
 
 
+left:${props=> props.l};
+right:${props=> props.r};
+bottom:${props=> props.b};
+top:${props=> props.t};
 
 font-family: Mulish;
 font-style: normal;
 font-weight: ${props=> props.fw} ;
 font-size: 24px;
 font-size:${props=> props.fs} ;
-
-
-
 color: #3C64B1;
 
+`
+export const Input = styled.input`
 
+// main styles
+width: 176px;
+width:${props=> props.w};
+height: 48px;
+height: ${props=> props.h};
+position:${props=> props.position};
+
+// margin 
+margin:${props=> props.ml};
+margin-left:${props=> props.ml};
+margin-right:${props=> props.mr};
+margin-bottom:${props=> props.mb};
+margin-top:${props=> props.mt};
+// padding
+padding:0px 0px;
+padding:${props=> props.margin};
+padding-left:${props=> props.pl};
+padding-right:${props=> props.pr};
+padding-bottom:${props=> props.pb};
+padding-top:${props=> props.pt};
+
+
+left:${props=> props.l};
+right:${props=> props.r};
+bottom:${props=> props.b};
+top:${props=> props.t};
+
+padding-left:12px;
+
+// font 
+font-family: Mulish;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 22px;
+
+letter-spacing: 0.3px;
+
+color: #1A2946;
+
+background: rgba(186, 206, 245, 0.26);
+border: 2px solid #3C64B1;
+box-sizing: border-box;
+outline: none;
+
+transition: all 0.5s ease 0s;
+
+&:hover {
+  border: 3px solid #3C64B1;
+}
+`
+
+export const SmallText = styled.div`
+// main styles
+width:${props=> props.w};
+height: 48px;
+height: ${props=> props.h};
+position:${props=> props.position};
+
+// margin 
+margin:${props=> props.ml};
+margin-left:${props=> props.ml};
+margin-right:${props=> props.mr};
+margin-bottom:${props=> props.mb};
+margin-top:${props=> props.mt};
+// padding
+padding:0px 0px;
+padding:${props=> props.margin};
+padding-left:${props=> props.pl};
+padding-right:${props=> props.pr};
+padding-bottom:${props=> props.pb};
+padding-top:${props=> props.pt};
+
+
+left:${props=> props.l};
+right:${props=> props.r};
+bottom:${props=> props.b};
+top:${props=> props.t};
+
+
+font-weight: ${props=> props.fw} ;
+font-size:${props=> props.fs} ;
+font-family: ${props=> props.fs};
+
+font-family: Mulish;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 22px;
+/* identical to box height, or 157% */
+
+letter-spacing: 0.3px;
+
+color: #1A2946;
+`
+
+export const HeadingText = styled.div`
+
+// main styles
+width:${props=> props.w};
+height: 48px;
+height: ${props=> props.h};
+position:${props=> props.position};
+
+// margin 
+margin:${props=> props.ml};
+margin-left:${props=> props.ml};
+margin-right:${props=> props.mr};
+margin-bottom:${props=> props.mb};
+margin-top:${props=> props.mt};
+// padding
+padding:0px 0px;
+padding:${props=> props.margin};
+padding-left:${props=> props.pl};
+padding-right:${props=> props.pr};
+padding-bottom:${props=> props.pb};
+padding-top:${props=> props.pt};
+
+
+left:${props=> props.l};
+right:${props=> props.r};
+bottom:${props=> props.b};
+top:${props=> props.t};
+
+
+font-weight: ${props=> props.fw} ;
+font-size:${props=> props.fs} ;
+font-family: ${props=> props.fs};
+
+font-family: Mulish;
+font-style: normal;
+font-weight: bold;
+font-size: 34px;
+line-height: 56px;
+/* identical to box height, or 165% */
+
+color: #2B5CB9;
 `
 
 
 
+
+export const BodyText = styled.div`
+// main styles
+width:${props=> props.w};
+height: ${props=> props.h};
+position:${props=> props.position};
+
+// margin 
+margin:${props=> props.ml};
+margin-left:${props=> props.ml};
+margin-right:${props=> props.mr};
+margin-bottom:${props=> props.mb};
+margin-top:${props=> props.mt};
+// padding
+padding:0px 0px;
+padding:${props=> props.margin};
+padding-left:${props=> props.pl};
+padding-right:${props=> props.pr};
+padding-bottom:${props=> props.pb};
+padding-top:${props=> props.pt};
+
+
+left:${props=> props.l};
+right:${props=> props.r};
+bottom:${props=> props.b};
+top:${props=> props.t};
+
+
+font-weight: ${props=> props.fw} ;
+font-size:${props=> props.fs} ;
+font-family: ${props=> props.fs};
+
+font-family: Mulish;
+font-style: normal;
+font-weight: 600;
+font-size: 24px;
+line-height: 56px;
+/* identical to box height, or 233% */
+
+text-align: ${props=> props.align};
+letter-spacing: 0.2px;
+
+color: #2B5CB9;
+`
+
+
+export const Chip = styled.div`
+// main styles
+width: fit-content;
+
+width:${props=> props.w};
+
+height: ${props=> props.h};
+position:${props=> props.position};
+
+padding:4px 14px;
+padding:${props=> props.margin};
+padding-left:${props=> props.pl};
+padding-right:${props=> props.pr};
+padding-bottom:${props=> props.pb};
+padding-top:${props=> props.pt};
+
+
+background: rgba(186, 206, 245, 0.26);
+border: 1px solid #3C64B1;
+box-sizing: border-box;
+border-radius: 200px;
+cursor: pointer;
+
+`
 
 

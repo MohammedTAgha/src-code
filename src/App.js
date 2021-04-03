@@ -7,9 +7,9 @@ import list from "./Assets/ListView.svg";
 import "./Styles.css";
 //import { Button } from "reactstrap";
 import hero from './Assets/heroImg.png'
-import Header from './Components/Header'
+import {Header , NavBar , Db} from './Components'
 import CardItem from './Components/CardItem'
-import NavBar from './Components/NavBar'
+
 
 
 import {Cta,Button, Card, Text} from "./Elements/Eements";
@@ -48,7 +48,8 @@ const App=()=> {
       
         <Switch>
         <Route path="/" component={Header} exact />
-        
+        <Route path="/database" component={Db} exact  />
+
         </Switch>
      
 

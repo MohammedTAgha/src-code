@@ -226,3 +226,27 @@ color: #55829C;
   position: absolute;
   bottom: 20px;
 }
+.database-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.database{
+  width: 80%;
+  display: block;
+  height: calc(100vh - 64px);
+  padding-top: 66px;
+}
+
+.inputs > *:not(:last-child){
+  margin-right: 24px;
+}
+
+.chips{
+  margin-top: 24px;
+  display: flex;
+  flex-direction: row;
+}
+.chips > *:not(:last-child){
+  margin-right: 12px;
+}
