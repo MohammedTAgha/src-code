@@ -1,6 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-
+import React, { useState, useEffect } from 'react'
+import {  BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import firebase from './firebase';
 
 import list from "./Assets/ListView.svg";
 
@@ -9,48 +9,52 @@ import "./Styles.css";
 import hero from './Assets/heroImg.png'
 import Header from './Components/Header'
 import CardItem from './Components/CardItem'
+import NavBar from './Components/NavBar'
 
 
 import {Cta,Button, Card, Text} from "./Elements/Eements";
 
-function App() {
-  var Codes={
-    dialog:{
-        title:'android dialog',
-        description:'Android AlertDialog can be used to display the dialog message with OK and Cancel buttons. It can be used to interrupt and ask the user about his/her choice to continue or discontinue.',
-        img:'android dialog',
-    },
-    listView:{
-        title:'android listview',
-        description:'Displays a vertically-scrollable collection of views, where each view is positioned immediatelybelow the previous view in the list. For a more modern, flexible, and performant approach to displaying lists',
-        img:'listview',
-    },
-    database:{
-        title:'android database',
-        description:'Saving data to a database is ideal for repeating or structured data, such as contact information.',
-        img:'database',
-    },
-    notification:{
-        title:'android notification',
-        description:'Android Notification provides short, timely information about the action happened in the application, even it is not running. The notification displays the icon, title and some amount of the content text.',
-        img:'notification',
-    },
-}
+const App=()=> {
+  const [codes,setCodes]=useState()
+  const itemsRef = firebase.database().ref('items');
+  useEffect(() => {
+    getData()
+  }, [codes])
+  function addData(data){
+    
+    const item = {
+      title:'mohammed' ,
+      user: '3333'
+    }
+    itemsRef.push(data);
+  }
+ 
+  function getData(){
+    itemsRef.on('value', (snapshot) => {
+      let items = snapshot.val();
+      let newState = [];
+      for (let item in items) {
+        newState.push(item)
+        console.log(item)
+      }
+    })}
+   
+   
+  
   return (
+    <Router>
     <div>
-      <Header></Header>
-      <div class='second'>
-         <article>“ Copy-and-Paste was programmed by programmers <br/> for programmers actually .”</article>
-         <div class='cards'>
-          
-          {
-           Object.keys(Codes).map((item, i) => (
-            <CardItem data={Codes[item]} key={i}></CardItem>
-           ))}
+      <NavBar/>
+      
+        <Switch>
+        <Route path="/" component={Header} exact />
+        
+        </Switch>
+     
 
-         </div>
-      </div>
+      
     </div>
+    </Router>
   );
 }
 

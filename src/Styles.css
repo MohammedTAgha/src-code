@@ -131,12 +131,13 @@
   color: #3c64b1;
 }
 .text div article {
-  padding-right: 8%;
+  width: 75%;
+  /* padding-right: 8%; */
   font-family: Mulish;
   font-style: normal;
   font-weight:600;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 24px;
   margin-bottom: 28px;
   /* or 137% */
 
@@ -199,6 +200,7 @@ color: #3C64B1;
 .description{
   width: 75%;
   max-height: 52%;
+  
   margin-top: 14px;
   font-family: Mulish;
   font-style: normal;
