@@ -1,0 +1,104 @@
+
+class Handler(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DATABASE_VERSION) {
+    companion object {
+        private val DATABASE_VERSION = 1
+        private val DATABASE_NAME = "EmployeeDatabase"
+        private val TABLE_CONTACTS = "EmployeeTable"
+        private val KEY_ID = "id"
+        private val KEY_NAME = "name"
+        private val KEY_EMAIL = "email"
+        private val KEY_PHONE = "phone"
+        private val KEY_MAJOR = "major"
+        private val KEY_SALARY = "salary"
+    }
+    override fun onCreate(db: SQLiteDatabase?) {
+        // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        //creating table with fields
+        val CREATE_CONTACTS_TABLE = ("CREATE TABLE " + TABLE_CONTACTS + "("
+                + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_NAME + " TEXT, "
+                + KEY_EMAIL + " TEXT, " + KEY_PHONE + " TEXT, " +KEY_MAJOR + " TEXT, "+KEY_SALARY + " REAL" +  ")")
+        db?.execSQL(CREATE_CONTACTS_TABLE)
+
+
+
+    }
+
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        //  TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS)
+        onCreate(db)
+    }
+
+
+    //method to insert data
+    fun addEmployee(emp: EmployeeModle):Long{
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(KEY_ID, emp.empId)
+        contentValues.put(KEY_NAME, emp.empName) // EmpModelClass Name
+        contentValues.put(KEY_PHONE,emp.empPhone ) // EmpModelClass Phone
+        contentValues.put(KEY_MAJOR,emp.empMajour ) // EmpModelClass Phone
+        contentValues.put(KEY_SALARY,emp.empSalary ) // EmpModelClass Phone
+        // Inserting Row
+        val success = db.insert(TABLE_CONTACTS, null, contentValues)
+        //2nd argument is String containing nullColumnHack
+        db.close() // Closing database connection
+        return success
+    }
+    //method to read data
+    fun viewEmployee():List<EmployeeModle>{
+        val empList:ArrayList<EmployeeModle> = ArrayList<EmployeeModle>()
+        val selectQuery = "SELECT  * FROM $TABLE_CONTACTS"
+        val db = this.readableDatabase
+        var cursor: Cursor? = null
+        try{
+            cursor = db.rawQuery(selectQuery, null)
+        }catch (e: SQLiteException) {
+            db.execSQL(selectQuery)
+            return ArrayList()
+        }
+        var userId: Int
+        var userName: String
+        var empPhone: String
+        var empMajour: String
+        var empSalary: Double
+        if (cursor.moveToFirst()) {
+            do {
+                userId = cursor.getInt(cursor.getColumnIndex("id"))
+                userName = cursor.getString(cursor.getColumnIndex("name"))
+                empPhone = cursor.getString(cursor.getColumnIndex("phone"))
+                empMajour = cursor.getString(cursor.getColumnIndex("major"))
+                empSalary = cursor.getDouble(cursor.getColumnIndex("salary"))
+                val emp= EmployeeModle( userId,  userName, empPhone,empMajour,empSalary)
+                empList.add(emp)
+            } while (cursor.moveToNext())
+        }
+        return empList
+    }
+    //method to update data
+    fun updateEmployee(emp: EmployeeModle):Int{
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(KEY_ID, emp.empId)
+        contentValues.put(KEY_NAME, emp.empName) // EmpModelClass Name
+        contentValues.put(KEY_PHONE,emp.empPhone ) // EmpModelClass Phone
+        contentValues.put(KEY_MAJOR,emp.empMajour ) // EmpModelClass Phone
+        contentValues.put(KEY_SALARY,emp.empSalary ) // EmpModelClass Phone
+        // Updating Row
+        val success = db.update(TABLE_CONTACTS, contentValues,"id="+emp.empId,null)
+        //2nd argument is String containing nullColumnHack
+        db.close() // Closing database connection
+        return success
+    }
+    //method to delete data
+    fun deleteEmployee(emp: EmployeeModle):Int{
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(KEY_ID, emp.empId) // EmpModelClass UserId
+        // Deleting Row
+        val success = db.delete(TABLE_CONTACTS,"id="+emp.empId,null)
+        //2nd argument is String containing nullColumnHack
+        db.close() // Closing database connection
+        return success
+    }
+}
